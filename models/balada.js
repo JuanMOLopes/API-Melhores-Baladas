@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 const dbPath = "./infra/database.db";
-// Função para abrir conexão com o banco de dados
+// abrir conexão com o banco de dados
 function openDbConnection() {
   let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -9,7 +9,7 @@ function openDbConnection() {
   });
   return db;
 }
-// Função para buscar todas as baladas
+// buscar todas as baladas
 function getAllBaladas(callback) {
   const db = openDbConnection();
   db.all("SELECT * FROM Baladas", [], (err, rows) => {
@@ -17,7 +17,7 @@ function getAllBaladas(callback) {
     callback(err, rows);
   });
 }
-// Função para buscar baladas pelo nome da cidade
+//  buscar baladas pelo nome da cidade
 function getBaladaByCidade(cidade, callback) {
   const db = openDbConnection();
   db.all(
@@ -29,7 +29,7 @@ function getBaladaByCidade(cidade, callback) {
     }
   );
 }
-// Função para buscar baladas pela data
+//  buscar baladas pela data
 function getBaladaByData(data, callback) {
   const db = openDbConnection();
   db.all(
@@ -41,7 +41,7 @@ function getBaladaByData(data, callback) {
     }
   );
 }
-// Função para criar uma nova balada
+//  criar uma nova balada
 function createBalada(balada, callback) {
   const { cidade, data, tipoDeBalada, nome } = balada;
   const db = openDbConnection();
@@ -54,7 +54,7 @@ function createBalada(balada, callback) {
     }
   );
 }
-// Função para atualizar uma balada existente
+//  atualizar uma balada existente
 function updateBalada(id, balada, callback) {
   const { cidade, data, tipoDeBalada, nome } = balada;
   const db = openDbConnection();
@@ -67,7 +67,7 @@ function updateBalada(id, balada, callback) {
     }
   );
 }
-// Função para deletar uma balada
+// deletar uma balada
 function deleteBalada(id, callback) {
   const db = openDbConnection();
   db.run("DELETE FROM Baladas WHERE id = ?", [id], function (err) {
