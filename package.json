@@ -1,7 +1,7 @@
 {
   "name": "exemplo-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "No terminal, execute:",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +14,13 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "sqlite3": "^5.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanMOLopes/API-Melhores-Baladas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JuanMOLopes/API-Melhores-Baladas/issues"
+  },
+  "homepage": "https://github.com/JuanMOLopes/API-Melhores-Baladas#readme"
 }
