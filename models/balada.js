@@ -17,25 +17,29 @@ function getAllBaladas(callback) {
     callback(err, rows);
   });
 }
-// Função para buscar uma balada pelo nome da cidade
+// Função para buscar baladas pelo nome da cidade
 function getBaladaByCidade(cidade, callback) {
   const db = openDbConnection();
-  db.get(
-    "SELECT * FROM Baladas WHERE cidade = ?",
+  db.all(
+    "SELECT * FROM Baladas WHERE cidade LIKE ?",
     [`%${cidade}%`],
-    (err, row) => {
+    (err, rows) => {
       db.close();
-      callback(err, row);
+      callback(err, rows);
     }
   );
 }
-// Função para buscar uma balada pela data
+// Função para buscar baladas pela data
 function getBaladaByData(data, callback) {
   const db = openDbConnection();
-  db.get("SELECT * FROM Baladas WHERE data = ?", [`%${data}%`], (err, row) => {
-    db.close();
-    callback(err, row);
-  });
+  db.all(
+    "SELECT * FROM Baladas WHERE data LIKE ?",
+    [`%${data}%`],
+    (err, rows) => {
+      db.close();
+      callback(err, rows);
+    }
+  );
 }
 // Função para criar uma nova balada
 function createBalada(balada, callback) {
