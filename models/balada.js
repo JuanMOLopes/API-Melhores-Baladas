@@ -9,60 +9,73 @@ function openDbConnection() {
   });
   return db;
 }
-// Função para buscar todos os clientes
-function getAllClientes(callback) {
+// Função para buscar todas as baladas
+function getAllBaladas(callback) {
   const db = openDbConnection();
-  db.all("SELECT * FROM Clientes", [], (err, rows) => {
+  db.all("SELECT * FROM Baladas", [], (err, rows) => {
     db.close();
     callback(err, rows);
   });
 }
-// Função para buscar um cliente por ID
-function getClienteById(id, callback) {
+// Função para buscar uma balada pelo nome da cidade
+function getBaladaByCidade(cidade, callback) {
   const db = openDbConnection();
-  db.get("SELECT * FROM Clientes WHERE id = ?", [id], (err, row) => {
+  db.get(
+    "SELECT * FROM Baladas WHERE cidade = ?",
+    [`%${cidade}%`],
+    (err, row) => {
+      db.close();
+      callback(err, row);
+    }
+  );
+}
+// Função para buscar uma balada pela data
+function getBaladaByData(data, callback) {
+  const db = openDbConnection();
+  db.get("SELECT * FROM Baladas WHERE data = ?", [`%${data}%`], (err, row) => {
     db.close();
     callback(err, row);
   });
 }
-// Função para criar um novo cliente
-function createCliente(cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+// Função para criar uma nova balada
+function createBalada(balada, callback) {
+  const { cidade, data, tipoDeBalada, nome } = balada;
   const db = openDbConnection();
   db.run(
-    "INSERT INTO Clientes (nome, cpf, email, telefone) VALUES (?, ?, ?, ?)",
-    [nome, cpf, email, telefone],
+    "INSERT INTO Baladas (cidade, data, tipoDeBalada, nome) VALUES (?, ?, ?, ?)",
+    [cidade, data, tipoDeBalada, nome],
     function (err) {
       db.close();
       callback(err, { id: this.lastID });
     }
   );
 }
-// Função para atualizar um cliente existente
-function updateCliente(id, cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+// Função para atualizar uma balada existente
+function updateBalada(id, balada, callback) {
+  const { cidade, data, tipoDeBalada, nome } = balada;
   const db = openDbConnection();
   db.run(
-    "UPDATE Clientes SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?",
-    [nome, cpf, email, telefone, id],
+    "UPDATE Baladas SET cidade = ?, data = ?, tipoDeBalada = ?, nome = ? WHERE id = ?",
+    [cidade, data, tipoDeBalada, nome, id],
     function (err) {
       db.close();
       callback(err, { changes: this.changes });
     }
   );
 }
-// Função para deletar um cliente
-function deleteCliente(id, callback) {
+// Função para deletar uma balada
+function deleteBalada(id, callback) {
   const db = openDbConnection();
-  db.run("DELETE FROM Clientes WHERE id = ?", [id], function (err) {
+  db.run("DELETE FROM Baladas WHERE id = ?", [id], function (err) {
     db.close();
     callback(err, { changes: this.changes });
   });
 }
 module.exports = {
-  getAllClientes,
-  getClienteById,
-  createCliente,
-  updateCliente,
-  deleteCliente,
+  getAllBaladas,
+  getBaladaByCidade,
+  getBaladaByData,
+  createBalada,
+  updateBalada,
+  deleteBalada,
 };

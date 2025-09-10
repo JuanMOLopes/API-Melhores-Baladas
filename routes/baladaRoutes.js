@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const baladaController = require("../controllers/clienteController");
+const baladaController = require("../controllers/baladaController");
 
 router.get("/", baladaController.getAllBaladas);
 
