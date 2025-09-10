@@ -1,6 +1,5 @@
 const Balada = require("../models/balada");
-// Controlador para obter todas as baladas
-exports.getAllBaladas = (req, res) => {
+exports.getAllBaladas = (req, res) => { // Controlador para obter todas as baladas
   Balada.getAllBaladas((err, baladas) => {
     if (err) {
       res.status(500).send(err);
@@ -9,8 +8,8 @@ exports.getAllBaladas = (req, res) => {
     }
   });
 };
-// Controlador para obter uma balada pelo nome da cidade
-exports.getBaladaByCidade = (req, res) => {
+
+exports.getBaladaByCidade = (req, res) => { // Controlador para obter uma balada pelo nome da cidade
   Balada.getBaladaByCidade(req.params.cidade, (err, balada) => {
     if (err) {
       res.status(500).send(err);
@@ -21,8 +20,8 @@ exports.getBaladaByCidade = (req, res) => {
     }
   });
 };
-// Controlador para obter uma balada pela data
-exports.getBaladaByData = (req, res) => {
+
+exports.getBaladaByData = (req, res) => { // Controlador para obter uma balada pela data
   Balada.getBaladaByData(req.params.data, (err, balada) => {
     if (err) {
       res.status(500).send(err);
@@ -33,8 +32,8 @@ exports.getBaladaByData = (req, res) => {
     }
   });
 };
-// Controlador para criar uma nova balada
-exports.createBalada = (req, res) => {
+
+exports.createBalada = (req, res) => { // Controlador para criar uma nova balada
   Balada.createBalada(req.body, (err, result) => {
     if (err) {
       res.status(500).send(err);
@@ -43,8 +42,7 @@ exports.createBalada = (req, res) => {
     }
   });
 };
-// Controlador para atualizar um cliente existente
-exports.updateBalada = (req, res) => {
+exports.updateBalada = (req, res) => { // Controlador para atualizar um cliente existente
   Balada.updateBalada(req.params.id, req.body, (err, result) => {
     if (err) {
       res.status(500).send(err);
@@ -55,8 +53,8 @@ exports.updateBalada = (req, res) => {
     }
   });
 };
-// Controlador para deletar uma balada
-exports.deleteBalada = (req, res) => {
+
+exports.deleteBalada = (req, res) => { // Controlador para deletar uma balada
   Balada.deleteBalada(req.params.id, (err, result) => {
     if (err) {
       res.status(500).send(err);
