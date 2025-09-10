@@ -9,15 +9,27 @@ exports.getAllBaladas = (req, res) => {
     }
   });
 };
-// Controlador para obter um cliente pelo ID
-exports.getBaladaById = (req, res) => {
-  Balada.getBaladaById(req.params.id, (err, balada) => {
+// Controlador para obter uma balada pelo nome da cidade
+exports.getBaladaByCidade = (req, res) => {
+  Balada.getBaladaByCidade(req.params.cidade, (err, balada) => {
     if (err) {
       res.status(500).send(err);
     } else if (balada) {
       res.json(balada);
     } else {
-      res.status(404).send({ message: "Balada não encontrado" });
+      res.status(404).send({ message: "Balada não encontrada" });
+    }
+  });
+};
+// Controlador para obter uma balada pela data
+exports.getBaladaByData = (req, res) => {
+  Balada.getBaladaByData(req.params.data, (err, balada) => {
+    if (err) {
+      res.status(500).send(err);
+    } else if (balada) {
+      res.json(balada);
+    } else {
+      res.status(404).send({ message: "Balada não encontrada" });
     }
   });
 };

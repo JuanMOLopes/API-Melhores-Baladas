@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const baladaController = require("../controllers/clienteController");
 
-router.get("/", baladaController.getTodasBaladas);
+router.get("/", baladaController.getAllBaladas);
 
-router.get("/cidade/:cidade", baladaController.getPorCidade);
+router.get("/cidade/:cidade", baladaController.getBaladaByCidade);
 
-router.get("/data/:data", baladaController.getPorData);
+router.get("/data/:data", baladaController.getBaladaByData);
 
-router.post("/", baladaController.adicionarBalada);
+router.post("/", baladaController.createBalada);
 
-router.put("/:id", baladaController.atualizarBalada);
+router.put("/:id", baladaController.updateBalada);
 
-router.delete("/:id", baladaController.deletarBalada);
+router.delete("/:id", baladaController.deleteBalada);
 module.exports = router;
