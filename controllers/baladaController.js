@@ -1,4 +1,4 @@
-const Cliente = require("../models/cliente");
+const Cliente = require("../models/balada");
 // Controlador para obter todos os clientes
 exports.getAllClientes = (req, res) => {
   Cliente.getAllClientes((err, clientes) => {
